@@ -29,7 +29,10 @@ const dummyDecks = {
 };
 
 const formatDeckResults = () => {
-  AsyncStorage.setItem(DECK_STORAGE_KEY, JSON.stringify(dummyDecks));
+  return AsyncStorage.setItem(
+    DECK_STORAGE_KEY,
+    JSON.stringify(dummyDecks)
+  ).then(() => dummyDecks);
 };
 
 export function fetchDeckResults() {
