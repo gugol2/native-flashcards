@@ -6,7 +6,7 @@ import {
   REMOVE_DECK_CARD,
 } from "../actions";
 
-export const decks = ({ state = {}, action }) => {
+export const decks = (state = {}, action) => {
   switch (action.type) {
     case RECEIVE_DECKS:
       return {

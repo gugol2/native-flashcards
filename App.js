@@ -7,24 +7,35 @@ import useCachedResources from "./hooks/useCachedResources";
 import BottomTabNavigator from "./navigation/BottomTabNavigator";
 import LinkingConfiguration from "./navigation/LinkingConfiguration";
 
+import { createStore } from "redux";
+import { decks } from "./reducers";
+import { Provider } from "react-redux";
+
 const Stack = createStackNavigator();
 
 export default function App(props) {
   const isLoadingComplete = useCachedResources();
 
+  const store = createStore(
+    decks,
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  );
+
   if (!isLoadingComplete) {
     return null;
   } else {
     return (
-      <View style={styles.container}>
-        {Platform.OS === "ios" && <StatusBar barStyle="dark-content" />}
-        {/* <NavigationContainer linking={LinkingConfiguration}> */}
-        <NavigationContainer>
-          <Stack.Navigator>
-            <Stack.Screen name="Root" component={BottomTabNavigator} />
-          </Stack.Navigator>
-        </NavigationContainer>
-      </View>
+      <Provider store={store}>
+        <View style={styles.container}>
+          {Platform.OS === "ios" && <StatusBar barStyle="dark-content" />}
+          {/* <NavigationContainer linking={LinkingConfiguration}> */}
+          <NavigationContainer>
+            <Stack.Navigator>
+              <Stack.Screen name="Root" component={BottomTabNavigator} />
+            </Stack.Navigator>
+          </NavigationContainer>
+        </View>
+      </Provider>
     );
   }
 }
