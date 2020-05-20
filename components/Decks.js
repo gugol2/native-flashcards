@@ -26,7 +26,7 @@ export const Decks = (props) => {
       {/* <Text>{JSON.stringify(decks)}</Text> */}
 
       {Object.entries(decks).map(([key, value]) => (
-        <View>
+        <View key={key}>
           <Text>{key}</Text>
           <Text>{value.questions.length}</Text>
         </View>
