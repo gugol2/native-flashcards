@@ -2,17 +2,19 @@ import { View, Text } from "react-native";
 import React, { useEffect, useState } from "react";
 import { fetchDeckResults } from "../utils/api";
 import { AppLoading } from "expo";
+import { connect } from "react-redux";
+import { receiveDecks } from "../actions";
 
-export const Decks = (props) => {
+const Decks = (props) => {
   console.log("props for Decks", props);
+  const { dispatch, decks } = props;
 
-  const [decks, setDecks] = useState({});
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
     fetchDeckResults().then((decksFromStorage) => {
       console.log("decksFromStorage", decksFromStorage);
-      setDecks(decksFromStorage);
+      dispatch(receiveDecks(decksFromStorage));
       setReady(true);
     });
   }, []);
@@ -34,3 +36,11 @@ export const Decks = (props) => {
     </View>
   );
 };
+
+const mapStateToProps = (state) => {
+  return {
+    decks: state,
+  };
+};
+
+export const ConnectedDecks = connect(mapStateToProps)(Decks);

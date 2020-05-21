@@ -4,7 +4,7 @@ import * as React from "react";
 import TabBarIcon from "../components/TabBarIcon";
 import HomeScreen from "../screens/HomeScreen";
 import LinksScreen from "../screens/LinksScreen";
-import { Decks } from "../components/Decks";
+import { ConnectedDecks } from "../components/Decks";
 
 const BottomTab = createBottomTabNavigator();
 const INITIAL_ROUTE_NAME = "Decks";
@@ -19,7 +19,7 @@ export default function BottomTabNavigator({ navigation, route }) {
     <BottomTab.Navigator initialRouteName={INITIAL_ROUTE_NAME}>
       <BottomTab.Screen
         name="Decks"
-        component={Decks}
+        component={ConnectedDecks}
         options={{
           title: "Decks",
           tabBarIcon: ({ focused }) => (
