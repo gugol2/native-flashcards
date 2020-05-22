@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, StyleSheet } from "react-native";
 import React, { useEffect, useState } from "react";
 import { fetchDeckResults } from "../utils/api";
 import { AppLoading } from "expo";
@@ -8,7 +8,7 @@ import { DeckBrief } from "./DeckBrief";
 
 const Decks = (props) => {
   console.log("props for Decks", props);
-  const { dispatch, decks } = props;
+  const { dispatch, decks, navigation } = props;
 
   const [ready, setReady] = useState(false);
 
@@ -29,7 +29,12 @@ const Decks = (props) => {
       {/* <Text>{JSON.stringify(decks)}</Text> */}
 
       {Object.entries(decks).map(([title, value]) => (
-        <DeckBrief key={title} title={title} value={value} />
+        <DeckBrief
+          key={title}
+          title={title}
+          value={value}
+          navigation={navigation}
+        />
       ))}
     </View>
   );

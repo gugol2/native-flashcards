@@ -1,12 +1,20 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 
-export const DeckBrief = ({ title, value }) => {
+export const DeckBrief = (props) => {
+  console.log("props for DeckBrief", props);
+
+  const { title, value, navigation } = props;
+
+  const goToDeck = () => {
+    navigation.navigate("Deck", { title });
+  };
+
   return (
-    <View style={styles.deckBrief}>
+    <TouchableOpacity style={styles.deckBrief} onPress={goToDeck}>
       <Text>{title}</Text>
       <Text>{value.questions.length}</Text>
-    </View>
+    </TouchableOpacity>
   );
 };
 
