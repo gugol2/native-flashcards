@@ -46,6 +46,5 @@ export const ConnectedDecks = connect(mapStateToProps)(Decks);
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
   },
 });
