@@ -16,6 +16,10 @@ const Deck = (props) => {
     navigation.navigate("AddCard", { title });
   };
 
+  const startQuiz = () => {
+    navigation.navigate("Quiz");
+  };
+
   const deleteDeck = () => {
     // dispach removeDeck action
     dispatch(removeDeck(title));
@@ -37,7 +41,7 @@ const Deck = (props) => {
       <TextButton onPress={goToAddCard} style={{ padding: 10 }}>
         Add Card
       </TextButton>
-      <TextButton onPress={() => alert("Start Quiz")} style={{ padding: 10 }}>
+      <TextButton onPress={startQuiz} style={{ padding: 10 }}>
         Start Quiz
       </TextButton>
       <TextButton onPress={deleteDeck} style={{ padding: 10 }}>

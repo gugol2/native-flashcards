@@ -13,6 +13,7 @@ import { Provider } from "react-redux";
 import { buildComposeEnhancers } from "./middleware/composeEnhancers";
 import { ConnectedDeck } from "./components/Deck";
 import { ConnectedAddCard } from "./components/AddCard";
+import { Quiz } from "./components/Quiz";
 
 const Stack = createStackNavigator();
 
@@ -42,6 +43,7 @@ export default function App(props) {
                 options={({ route }) => ({ title: route.params.title })}
               />
               <Stack.Screen name="AddCard" component={ConnectedAddCard} />
+              <Stack.Screen name="Quiz" component={Quiz} />
             </Stack.Navigator>
           </NavigationContainer>
         </View>
