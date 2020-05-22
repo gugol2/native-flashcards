@@ -33,7 +33,7 @@ export const decks = (state = {}, action) => {
       const { [action.title]: removedDeck, ...restDecks } = state;
 
       return {
-        restDecks,
+        ...restDecks,
       };
 
     case REMOVE_DECK_CARD:

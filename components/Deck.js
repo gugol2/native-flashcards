@@ -2,9 +2,12 @@ import React from "react";
 import { View, Text } from "react-native";
 import { TextButton } from "./TextButton";
 import { connect } from "react-redux";
+import { removeDeck } from "../actions";
 
 const Deck = (props) => {
   console.log("Deck props", props);
+
+  const { dispatch } = props;
 
   const { deck, navigation } = props;
   const { title, questions } = deck;
@@ -12,6 +15,20 @@ const Deck = (props) => {
   const goToAddCard = () => {
     navigation.navigate("AddCard", { title });
   };
+
+  const deleteDeck = () => {
+    // dispach removeDeck action
+    dispatch(removeDeck(title));
+
+    // update asyncStorage
+
+    // Go back to Decks
+    navigation.navigate("Decks");
+  };
+
+  if (!deck.title) {
+    return null;
+  }
 
   return (
     <View>
@@ -23,7 +40,7 @@ const Deck = (props) => {
       <TextButton onPress={() => alert("Start Quiz")} style={{ padding: 10 }}>
         Start Quiz
       </TextButton>
-      <TextButton onPress={() => alert("Delete Deck")} style={{ padding: 10 }}>
+      <TextButton onPress={deleteDeck} style={{ padding: 10 }}>
         Delete Deck
       </TextButton>
     </View>
@@ -34,7 +51,7 @@ const mapStateToProps = (state, { route }) => {
   const { title } = route.params;
 
   return {
-    deck: state[title],
+    deck: state[title] || {},
   };
 };
 
