@@ -3,9 +3,9 @@ import { Text, StyleSheet } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { purple } from "../utils/colors";
 
-export const TextButton = ({ children, onPress, style = {} }) => {
+export const TextButton = ({ children, onPress, style = {}, disabled }) => {
   return (
-    <TouchableOpacity onPress={onPress}>
+    <TouchableOpacity onPress={onPress} disabled={disabled}>
       <Text style={[styles.reset, style]}>{children}</Text>
     </TouchableOpacity>
   );
