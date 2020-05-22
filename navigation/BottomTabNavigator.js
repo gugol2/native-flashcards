@@ -5,6 +5,10 @@ import TabBarIcon from "../components/TabBarIcon";
 import HomeScreen from "../screens/HomeScreen";
 import LinksScreen from "../screens/LinksScreen";
 import { ConnectedDecks } from "../components/Decks";
+import { Deck } from "../components/Deck";
+import { AddCard } from "../components/AddCard";
+import { AddDeck } from "../components/AddDeck";
+import { Quiz } from "../components/Quiz";
 
 const BottomTab = createBottomTabNavigator();
 const INITIAL_ROUTE_NAME = "Decks";
@@ -29,7 +33,7 @@ export default function BottomTabNavigator({ navigation, route }) {
       />
       <BottomTab.Screen
         name="AddDeck"
-        component={LinksScreen}
+        component={AddDeck}
         options={{
           title: "Add Deck",
           tabBarIcon: ({ focused }) => (
