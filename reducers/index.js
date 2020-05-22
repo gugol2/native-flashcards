@@ -17,7 +17,7 @@ export const decks = (state = {}, action) => {
     case ADD_DECK:
       return {
         ...state,
-        deck,
+        [action.title]: { title: action.title, questions: [] },
       };
 
     case ADD_CARD_TO_DECK:

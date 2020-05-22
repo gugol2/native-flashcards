@@ -1,9 +1,18 @@
 import React, { useState } from "react";
 import { View, TextInput } from "react-native";
 import { TextButton } from "./TextButton";
+import { connect } from "react-redux";
+import { addDeck } from "../actions";
 
-export const AddDeck = (props) => {
+const AddDeck = (props) => {
+  console.log("AddDeck props", props);
+  const { dispatch } = props;
+
   const [deckName, setDeckName] = useState("");
+
+  const submitDeck = () => {
+    dispatch(addDeck(deckName));
+  };
 
   return (
     <View>
@@ -20,12 +29,11 @@ export const AddDeck = (props) => {
         placeholder="Deck Name"
       />
 
-      <TextButton
-        onPress={() => alert(`Create Deck: ${deckName}`)}
-        style={{ padding: 10 }}
-      >
+      <TextButton onPress={submitDeck} style={{ padding: 10 }}>
         Submit
       </TextButton>
     </View>
   );
 };
+
+export const ConnectedAddDeck = connect()(AddDeck);
