@@ -11,6 +11,7 @@ import { createStore } from "redux";
 import { decks } from "./reducers";
 import { Provider } from "react-redux";
 import { buildComposeEnhancers } from "./middleware/composeEnhancers";
+import { Deck } from "./components/Deck";
 
 const Stack = createStackNavigator();
 
@@ -34,6 +35,7 @@ export default function App(props) {
           <NavigationContainer>
             <Stack.Navigator>
               <Stack.Screen name="Root" component={BottomTabNavigator} />
+              <Stack.Screen name="Deck" component={Deck} />
             </Stack.Navigator>
           </NavigationContainer>
         </View>

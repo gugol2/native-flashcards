@@ -6,12 +6,17 @@ import { addDeck } from "../actions";
 
 const AddDeck = (props) => {
   console.log("AddDeck props", props);
-  const { dispatch } = props;
+  const { dispatch, navigation } = props;
 
   const [deckName, setDeckName] = useState("");
 
   const submitDeck = () => {
     dispatch(addDeck(deckName));
+
+    // save to storage the new deck
+
+    // routes to the created deck
+    navigation.navigate("Deck", { title: deckName });
   };
 
   return (
