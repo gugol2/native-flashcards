@@ -23,9 +23,9 @@ export const decks = (state = {}, action) => {
     case ADD_CARD_TO_DECK:
       return {
         ...state,
-        ...{
-          ...state[action.deck],
-          questions: [...state[action.deck].questions, action.card],
+        [action.title]: {
+          ...state[action.title],
+          questions: [...state[action.title].questions, action.card],
         },
       };
 

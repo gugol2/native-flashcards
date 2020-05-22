@@ -10,7 +10,7 @@ const Deck = (props) => {
   const { title, questions } = deck;
 
   const goToAddCard = () => {
-    navigation.navigate("AddCard");
+    navigation.navigate("AddCard", { title });
   };
 
   return (
