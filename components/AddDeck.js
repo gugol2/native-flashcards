@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, TextInput } from "react-native";
 import { TextButton } from "./TextButton";
 
 export const AddDeck = (props) => {
-  const { deckName } = props;
+  const [deckName, setDeckName] = useState("");
+
   return (
     <View>
       <TextInput
@@ -14,12 +15,15 @@ export const AddDeck = (props) => {
           margin: 16,
           padding: 4,
         }}
-        onChangeText={(text) => console.log(text)}
+        onChangeText={(text) => setDeckName(text)}
         value={deckName}
         placeholder="Deck Name"
       />
 
-      <TextButton onPress={() => alert("Create Deck")} style={{ padding: 10 }}>
+      <TextButton
+        onPress={() => alert(`Create Deck: ${deckName}`)}
+        style={{ padding: 10 }}
+      >
         Submit
       </TextButton>
     </View>
