@@ -7,18 +7,25 @@ import useCachedResources from "./hooks/useCachedResources";
 import BottomTabNavigator from "./navigation/BottomTabNavigator";
 import LinkingConfiguration from "./navigation/LinkingConfiguration";
 
-import { createStore } from "redux";
+import { createStore, compose } from "redux";
 import { decks } from "./reducers";
 import { Provider } from "react-redux";
+import { buildMiddleware } from "./middleware";
 
 const Stack = createStackNavigator();
 
 export default function App(props) {
   const isLoadingComplete = useCachedResources();
 
+  // const store = createStore(decks, buildMiddleware());
+
+  const composeEnhancers =
+    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
   const store = createStore(
     decks,
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+    /* preloadedState, */
+    composeEnhancers(buildMiddleware())
   );
 
   if (!isLoadingComplete) {
