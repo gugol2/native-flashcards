@@ -35,7 +35,11 @@ export default function App(props) {
           <NavigationContainer>
             <Stack.Navigator>
               <Stack.Screen name="Root" component={BottomTabNavigator} />
-              <Stack.Screen name="Deck" component={ConnectedDeck} />
+              <Stack.Screen
+                name="Deck"
+                component={ConnectedDeck}
+                options={({ route }) => ({ title: route.params.title })}
+              />
             </Stack.Navigator>
           </NavigationContainer>
         </View>
