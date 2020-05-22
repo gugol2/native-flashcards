@@ -4,6 +4,7 @@ import { fetchDeckResults } from "../utils/api";
 import { AppLoading } from "expo";
 import { connect } from "react-redux";
 import { receiveDecks } from "../actions";
+import { DeckBrief } from "./DeckBrief";
 
 const Decks = (props) => {
   console.log("props for Decks", props);
@@ -27,11 +28,8 @@ const Decks = (props) => {
     <View style={styles.container}>
       {/* <Text>{JSON.stringify(decks)}</Text> */}
 
-      {Object.entries(decks).map(([key, value]) => (
-        <View key={key}>
-          <Text>{key}</Text>
-          <Text>{value.questions.length}</Text>
-        </View>
+      {Object.entries(decks).map(([title, value]) => (
+        <DeckBrief key={title} title={title} value={value} />
       ))}
     </View>
   );
