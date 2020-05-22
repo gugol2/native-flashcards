@@ -1,18 +1,18 @@
 import React from "react";
 import { View, Text } from "react-native";
 import { TextButton } from "./TextButton";
+import { connect } from "react-redux";
 
-export const Deck = (props) => {
-  console.log("props", props);
+const Deck = (props) => {
+  console.log("Deck props", props);
 
-  const { route } = props;
-  const { title } = route.params;
-  const cardNumber = 0;
+  const { deck } = props;
+  const { title, questions } = deck;
 
   return (
     <View>
       <Text>{title}</Text>
-      <Text>{`${cardNumber} cards`}</Text>
+      <Text>{`${questions.length} cards`}</Text>
       <TextButton onPress={() => alert("Add Card")} style={{ padding: 10 }}>
         Add Card
       </TextButton>
@@ -25,3 +25,13 @@ export const Deck = (props) => {
     </View>
   );
 };
+
+const mapStateToProps = (state, { route }) => {
+  const { title } = route.params;
+
+  return {
+    deck: state[title],
+  };
+};
+
+export const ConnectedDeck = connect(mapStateToProps)(Deck);
