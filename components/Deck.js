@@ -6,14 +6,18 @@ import { connect } from "react-redux";
 const Deck = (props) => {
   console.log("Deck props", props);
 
-  const { deck } = props;
+  const { deck, navigation } = props;
   const { title, questions } = deck;
+
+  const goToAddCard = () => {
+    navigation.navigate("AddCard");
+  };
 
   return (
     <View>
       <Text>{title}</Text>
       <Text>{`${questions.length} cards`}</Text>
-      <TextButton onPress={() => alert("Add Card")} style={{ padding: 10 }}>
+      <TextButton onPress={goToAddCard} style={{ padding: 10 }}>
         Add Card
       </TextButton>
       <TextButton onPress={() => alert("Start Quiz")} style={{ padding: 10 }}>
