@@ -52,7 +52,7 @@ function getHeaderTitle(route) {
   switch (routeName) {
     case "Decks":
       return "Deck list";
-    case "Add Deck":
+    case "AddDeck":
       return "Add a deck to your decks";
   }
 }
