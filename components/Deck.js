@@ -3,11 +3,16 @@ import { View, Text } from "react-native";
 import { TextButton } from "./TextButton";
 
 export const Deck = (props) => {
-  const { deckname = "DeckName", cardNumber = "3 cards" } = props;
+  console.log("props", props);
+
+  const { route } = props;
+  const { title } = route.params;
+  const cardNumber = 0;
+
   return (
     <View>
-      <Text>{deckname}</Text>
-      <Text>{cardNumber}</Text>
+      <Text>{title}</Text>
+      <Text>{`${cardNumber} cards`}</Text>
       <TextButton onPress={() => alert("Add Card")} style={{ padding: 10 }}>
         Add Card
       </TextButton>
