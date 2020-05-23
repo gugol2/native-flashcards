@@ -38,14 +38,21 @@ const Quiz = (props) => {
         {cardPosition}/{totalCardNumber}
       </Text>
       <Text>{score}</Text>
-      <Text>{question}</Text>
 
       {showAnswer ? (
-        <Text>{answer}</Text>
+        <View>
+          <Text>{answer}</Text>
+          <TextButton onPress={() => setShowAnswer(false)}>
+            See Question
+          </TextButton>
+        </View>
       ) : (
-        <Text onPress={() => setShowAnswer(true)}>
-          See answer (flips the card)
-        </Text>
+        <View>
+          <Text>{question}</Text>
+          <TextButton onPress={() => setShowAnswer(true)}>
+            See Answer
+          </TextButton>
+        </View>
       )}
 
       <TextButton
