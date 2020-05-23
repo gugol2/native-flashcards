@@ -3,6 +3,7 @@ import { View, TextInput } from "react-native";
 import { TextButton } from "./TextButton";
 import { addCardToDeck } from "../actions";
 import { connect } from "react-redux";
+import { addCardToDeckInStorage } from "../utils/api";
 
 const AddCard = (props) => {
   console.log("AddCard props", props);
@@ -21,7 +22,8 @@ const AddCard = (props) => {
     // update store
     dispatch(addCardToDeck(title, card));
 
-    // add the new card to the asynstorage
+    // add the new card to the deck in the DB
+    addCardToDeckInStorage(title, card);
 
     // Go to Deck
     navigation.navigate("Deck", { title });
