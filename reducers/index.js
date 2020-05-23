@@ -36,17 +36,6 @@ export const decks = (state = {}, action) => {
         ...restDecks,
       };
 
-    case REMOVE_DECK_CARD:
-      return {
-        ...state,
-        ...{
-          ...state[action.deck],
-          questions: state[action.deck].questions.map(
-            (card) => card !== action.card
-          ),
-        },
-      };
-
     default:
       state;
   }

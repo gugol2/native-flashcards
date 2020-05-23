@@ -32,11 +32,3 @@ export const removeDeck = (title) => {
     title,
   };
 };
-
-export const removeDeckCard = (title, card) => {
-  return {
-    type: REMOVE_DECK_CARD,
-    title,
-    card,
-  };
-};
