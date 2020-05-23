@@ -19,20 +19,25 @@ const Quiz = (props) => {
 
   const [showAnswer, setShowAnswer] = useState(false);
   const [quizIsFinished, setQuizIsFinished] = useState(false);
+  const [finalScore, setFinalScore] = useState(0);
 
   useLayoutEffect(() => {
     setShowAnswer(false);
-  }, [card]);
+    setQuizIsFinished(false);
+  }, [cardPosition]);
 
   const goToNextCard = (guess) => {
+    const updatedScore = guess ? score + 1 : score;
+
     if (cardPosition < totalCardNumber) {
       navigation.navigate("Quiz", {
         title,
         cardIndex: cardPosition,
-        score: guess ? score + 1 : score,
+        score: updatedScore,
       });
     } else {
       setQuizIsFinished(true);
+      setFinalScore(updatedScore);
     }
   };
 
@@ -52,7 +57,7 @@ const Quiz = (props) => {
     return (
       <View style={styles.container}>
         <View>
-          <Text>Total Score: {score}</Text>
+          <Text>Total Score: {finalScore}</Text>
         </View>
 
         <TextButton onPress={navigateBackToDeck} style={{ padding: 10 }}>
