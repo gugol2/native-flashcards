@@ -17,10 +17,10 @@ const Deck = (props) => {
   };
 
   const startQuiz = () => {
-    const cardIndex = 0;
     navigation.navigate("Quiz", {
       title,
-      cardIndex,
+      cardIndex: 0,
+      score: 0,
     });
   };
 
