@@ -2,49 +2,48 @@ import { AsyncStorage } from "react-native";
 
 const DECK_STORAGE_KEY = "Flashcards:decks";
 
-// const dummyDecks = {
-//   React: {
-//     title: "React",
-//     questions: [
-//       {
-//         question: "What is React?",
-//         answer: "A library for managing user interfaces",
-//       },
-//       {
-//         question: "Where do you make Ajax requests in React?",
-//         answer: "The componentDidMount lifecycle event",
-//       },
-//     ],
-//   },
-//   JavaScript: {
-//     title: "JavaScript",
-//     questions: [
-//       {
-//         question: "What is a closure?",
-//         answer:
-//           "The combination of a function and the lexical environment within which that function was declared.",
-//       },
-//     ],
-//   },
-// };
-
 const dummyDecks = {
-  Test: {
-    title: "Test",
+  React: {
+    title: "React",
     questions: [
       {
-        question: "Question 1",
-        answer: "Answer 1",
+        question: "What is React?",
+        answer: "A library for managing user interfaces",
+      },
+      {
+        question: "Where do you make Ajax requests in React?",
+        answer: "The componentDidMount lifecycle event",
+      },
+    ],
+  },
+  JavaScript: {
+    title: "JavaScript",
+    questions: [
+      {
+        question: "What is a closure?",
+        answer:
+          "The combination of a function and the lexical environment within which that function was declared.",
       },
     ],
   },
 };
 
-const formatDeckResults = () => {
-  return AsyncStorage.setItem(
-    DECK_STORAGE_KEY,
-    JSON.stringify(dummyDecks)
-  ).then(() => dummyDecks);
+// const dummyDecks = {
+//   Test: {
+//     title: "Test",
+//     questions: [
+//       {
+//         question: "Question 1",
+//         answer: "Answer 1",
+//       },
+//     ],
+//   },
+// };
+
+const saveDecksToStorage = (data) => {
+  return AsyncStorage.setItem(DECK_STORAGE_KEY, JSON.stringify(data)).then(
+    () => data
+  );
 };
 
 // getDecks: return all of the decks along with their titles, questions, and answers.
@@ -68,10 +67,8 @@ const getDeck = (title) => {
 
 export function fetchDeckResults() {
   // Let's clear the storage first
-  //   AsyncStorage.removeItem(DECK_STORAGE_KEY);
-  //   return getDecks().then(formatDeckResults);
   return AsyncStorage.removeItem(DECK_STORAGE_KEY).then(() =>
-    formatDeckResults()
+    saveDecksToStorage(dummyDecks)
   );
 }
 
