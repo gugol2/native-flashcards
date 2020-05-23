@@ -51,12 +51,12 @@ export const saveDeckTitle = ({ title }) => {
   );
 };
 
-export const removeEntry = (key) => {
+export const removeDeckFromStorage = (title) => {
   return AsyncStorage.getItem(DECK_STORAGE_KEY).then((results) => {
     const data = JSON.parse(results);
-    data[key] = undefined;
-    delete data[key];
-    AsyncStorage.setItem(DECK_STORAGE_KEY, JSON.stringify(data));
+
+    const { [title]: removedDeck, ...restDecks } = data;
+    AsyncStorage.setItem(DECK_STORAGE_KEY, JSON.stringify(restDecks));
   });
 };
 

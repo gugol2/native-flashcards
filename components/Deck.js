@@ -3,6 +3,7 @@ import { View, Text } from "react-native";
 import { TextButton } from "./TextButton";
 import { connect } from "react-redux";
 import { removeDeck } from "../actions";
+import { removeDeckFromStorage } from "../utils/api";
 
 const Deck = (props) => {
   console.log("Deck props", props);
@@ -35,7 +36,8 @@ const Deck = (props) => {
     // dispach removeDeck action
     dispatch(removeDeck(title));
 
-    // update asyncStorage
+    // remove the deck from the DB
+    removeDeckFromStorage(title);
 
     // Go back to Decks
     navigation.navigate("Decks");
