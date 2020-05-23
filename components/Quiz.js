@@ -14,6 +14,8 @@ const Quiz = (props) => {
     score,
   } = props;
 
+  const quizIsFinished = cardPosition === totalCardNumber;
+
   const { question, answer } = card;
 
   const [showAnswer, setShowAnswer] = useState(false);
@@ -31,6 +33,32 @@ const Quiz = (props) => {
       });
     }
   };
+
+  const navigateBackToDeck = () => {
+    navigation.goBack();
+  };
+
+  const restartQuiz = () => {
+    navigation.navigate("Quiz", {
+      title,
+      cardIndex: 0,
+      score: 0,
+    });
+  };
+
+  if (quizIsFinished) {
+    return (
+      <View>
+        <TextButton onPress={navigateBackToDeck} style={{ padding: 10 }}>
+          Back to Deck
+        </TextButton>
+
+        <TextButton onPress={restartQuiz} style={{ padding: 10 }}>
+          Restart Quiz
+        </TextButton>
+      </View>
+    );
+  }
 
   return (
     <View>
@@ -60,7 +88,7 @@ const Quiz = (props) => {
       <TextButton
         onPress={() => goToNextCard(true)}
         style={{ padding: 10 }}
-        disabled={cardPosition === totalCardNumber}
+        disabled={quizIsFinished}
       >
         Correct
       </TextButton>
@@ -68,12 +96,12 @@ const Quiz = (props) => {
       <TextButton
         onPress={() => goToNextCard(false)}
         style={{ padding: 10 }}
-        disabled={cardPosition === totalCardNumber}
+        disabled={quizIsFinished}
       >
         Incorrect
       </TextButton>
 
-      {cardPosition === totalCardNumber && (
+      {quizIsFinished && (
         <View>
           <Text>Total Score: {score}</Text>
         </View>
