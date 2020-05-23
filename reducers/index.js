@@ -3,7 +3,6 @@ import {
   ADD_DECK,
   ADD_CARD_TO_DECK,
   REMOVE_DECK,
-  REMOVE_DECK_CARD,
 } from "../actions";
 
 export const decks = (state = {}, action) => {
