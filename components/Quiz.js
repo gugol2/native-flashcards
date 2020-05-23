@@ -37,6 +37,8 @@ const Quiz = (props) => {
       <Text>
         {cardPosition}/{totalCardNumber}
       </Text>
+
+      {/* delete this */}
       <Text>{score}</Text>
 
       {showAnswer ? (
@@ -70,6 +72,12 @@ const Quiz = (props) => {
       >
         Incorrect
       </TextButton>
+
+      {cardPosition === totalCardNumber && (
+        <View>
+          <Text>Total Score: {score}</Text>
+        </View>
+      )}
     </View>
   );
 };
