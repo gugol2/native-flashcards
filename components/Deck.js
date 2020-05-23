@@ -17,7 +17,11 @@ const Deck = (props) => {
   };
 
   const startQuiz = () => {
-    navigation.navigate("Quiz");
+    const cardIndex = 0;
+    navigation.navigate("Quiz", {
+      title,
+      cardIndex,
+    });
   };
 
   const deleteDeck = () => {

@@ -1,37 +1,58 @@
 import React from "react";
 import { View, TextInput, Text } from "react-native";
 import { TextButton } from "./TextButton";
+import { connect } from "react-redux";
 
-export const Quiz = (props) => {
-  const {
-    totalCardNumber = 3,
-    cardNumber = 2,
-    question = "Who is the best programmer in the world?",
-  } = props;
+const Quiz = (props) => {
+  console.log("Quiz props:", props);
+  const { navigation, card, title, totalCardNumber, cardPosition } = props;
+
+  const { question, answer } = card;
+
+  const goToNextCard = () => {
+    if (cardPosition < totalCardNumber) {
+      navigation.navigate("Quiz", {
+        title,
+        cardIndex: cardPosition,
+      });
+    }
+  };
+
   return (
     <View>
       <Text>
-        {totalCardNumber}/{cardNumber}
+        {cardPosition}/{totalCardNumber}
       </Text>
       <Text>{question}</Text>
 
       <Text onPress={() => alert("Flip the card!!")}>
-        Answer (flips the card)
+        {answer} (flips the card)
       </Text>
 
-      <TextButton
-        onPress={() => alert("Correct chosen")}
-        style={{ padding: 10 }}
-      >
+      <TextButton onPress={goToNextCard} style={{ padding: 10 }}>
         Correct
       </TextButton>
 
-      <TextButton
-        onPress={() => alert("Incorrect chosen")}
-        style={{ padding: 10 }}
-      >
+      <TextButton onPress={goToNextCard} style={{ padding: 10 }}>
         Incorrect
       </TextButton>
     </View>
   );
 };
+
+const mapStateToProps = (state, { route }) => {
+  debugger;
+  const { cardIndex, title } = route.params;
+
+  const card = state[title].questions[cardIndex];
+  const totalCardNumber = state[title].questions.length;
+
+  return {
+    card,
+    title,
+    totalCardNumber,
+    cardPosition: cardIndex + 1,
+  };
+};
+
+export const ConnectedQuiz = connect(mapStateToProps)(Quiz);
