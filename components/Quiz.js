@@ -48,11 +48,19 @@ const Quiz = (props) => {
         </Text>
       )}
 
-      <TextButton onPress={() => goToNextCard(true)} style={{ padding: 10 }}>
+      <TextButton
+        onPress={() => goToNextCard(true)}
+        style={{ padding: 10 }}
+        disabled={cardPosition === totalCardNumber}
+      >
         Correct
       </TextButton>
 
-      <TextButton onPress={() => goToNextCard(false)} style={{ padding: 10 }}>
+      <TextButton
+        onPress={() => goToNextCard(false)}
+        style={{ padding: 10 }}
+        disabled={cardPosition === totalCardNumber}
+      >
         Incorrect
       </TextButton>
     </View>
