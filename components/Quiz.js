@@ -1,5 +1,5 @@
 import React, { useState, useLayoutEffect } from "react";
-import { View, Text } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 import { TextButton } from "./TextButton";
 import { connect } from "react-redux";
 
@@ -48,7 +48,7 @@ const Quiz = (props) => {
 
   if (quizIsFinished) {
     return (
-      <View>
+      <View style={styles.container}>
         <TextButton onPress={navigateBackToDeck} style={{ padding: 10 }}>
           Back to Deck
         </TextButton>
@@ -61,7 +61,7 @@ const Quiz = (props) => {
   }
 
   return (
-    <View>
+    <View style={styles.container}>
       <Text>
         {cardPosition}/{totalCardNumber}
       </Text>
@@ -126,3 +126,9 @@ const mapStateToProps = (state, { route }) => {
 };
 
 export const ConnectedQuiz = connect(mapStateToProps)(Quiz);
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+});
