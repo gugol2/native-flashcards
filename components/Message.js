@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 
 export const Message = (props) => {
   const { route } = props;
@@ -9,8 +9,21 @@ export const Message = (props) => {
   } = route.params;
 
   return (
-    <View>
-      <Text>{message}</Text>
+    <View style={styles.container}>
+      <Text style={styles.message}>{message}</Text>
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    padding: 8,
+  },
+
+  message: {
+    fontWeight: "bold",
+    fontSize: 20,
+  },
+});
