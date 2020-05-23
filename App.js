@@ -14,6 +14,7 @@ import { buildComposeEnhancers } from "./middleware/composeEnhancers";
 import { ConnectedDeck } from "./components/Deck";
 import { ConnectedAddCard } from "./components/AddCard";
 import { ConnectedQuiz } from "./components/Quiz";
+import { Message } from "./components/Message";
 
 const Stack = createStackNavigator();
 
@@ -44,6 +45,7 @@ export default function App(props) {
               />
               <Stack.Screen name="AddCard" component={ConnectedAddCard} />
               <Stack.Screen name="Quiz" component={ConnectedQuiz} />
+              <Stack.Screen name="Message" component={Message} />
             </Stack.Navigator>
           </NavigationContainer>
         </View>

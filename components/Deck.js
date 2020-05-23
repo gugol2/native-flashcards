@@ -17,11 +17,18 @@ const Deck = (props) => {
   };
 
   const startQuiz = () => {
-    navigation.navigate("Quiz", {
-      title,
-      cardIndex: 0,
-      score: 0,
-    });
+    if (questions.length) {
+      navigation.navigate("Quiz", {
+        title,
+        cardIndex: 0,
+        score: 0,
+      });
+    } else {
+      navigation.navigate("Message", {
+        message:
+          "Sorry you cannot take this quiz because there are no cards in the deck",
+      });
+    }
   };
 
   const deleteDeck = () => {
