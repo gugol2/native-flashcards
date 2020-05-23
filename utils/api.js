@@ -42,7 +42,7 @@ export function fetchDeckResults() {
 }
 
 // saveDeckTitle: take in a single title argument and add it to the decks.
-export const saveDeckTitle = ({ title }) => {
+export const saveDeckToStorage = (title) => {
   return AsyncStorage.mergeItem(
     DECK_STORAGE_KEY,
     JSON.stringify({

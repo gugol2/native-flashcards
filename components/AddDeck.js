@@ -3,7 +3,7 @@ import { View, TextInput, StyleSheet } from "react-native";
 import { TextButton } from "./TextButton";
 import { connect } from "react-redux";
 import { addDeck } from "../actions";
-import { saveDeckTitle } from "../utils/api";
+import { saveDeckToStorage } from "../utils/api";
 
 const AddDeck = (props) => {
   console.log("AddDeck props", props);
@@ -15,7 +15,7 @@ const AddDeck = (props) => {
     dispatch(addDeck(title));
 
     // Save Deck to "DB"
-    saveDeckTitle({ title });
+    saveDeckToStorage(title);
 
     // routes to the created deck
     navigation.navigate("Deck", { title });
