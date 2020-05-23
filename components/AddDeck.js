@@ -31,10 +31,7 @@ const AddDeck = (props) => {
 
       <TextButton
         onPress={submitDeck}
-        style={[
-          deckName === "" ? styles.disabled : styles.enabled,
-          styles.button,
-        ]}
+        style={styles.button}
         disabled={deckName === ""}
       >
         Submit
@@ -58,11 +55,5 @@ const styles = StyleSheet.create({
   },
   button: {
     margin: 30,
-  },
-  disabled: {
-    backgroundColor: red,
-  },
-  enabled: {
-    backgroundColor: blue,
   },
 });
