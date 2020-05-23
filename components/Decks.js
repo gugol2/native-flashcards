@@ -42,7 +42,7 @@ const Decks = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    decks: state,
+    decks: state || {},
   };
 };
 
