@@ -3,36 +3,37 @@ import { View, TextInput, StyleSheet } from "react-native";
 import { TextButton } from "./TextButton";
 import { connect } from "react-redux";
 import { addDeck } from "../actions";
-import { red, blue } from "../utils/colors";
+import { saveDeckTitle } from "../utils/api";
 
 const AddDeck = (props) => {
   console.log("AddDeck props", props);
   const { dispatch, navigation } = props;
 
-  const [deckName, setDeckName] = useState("");
+  const [title, setTitle] = useState("");
 
   const submitDeck = () => {
-    dispatch(addDeck(deckName));
+    dispatch(addDeck(title));
 
-    // save to storage the new deck
+    // Save Deck to "DB"
+    saveDeckTitle({ title });
 
     // routes to the created deck
-    navigation.navigate("Deck", { title: deckName });
+    navigation.navigate("Deck", { title });
   };
 
   return (
     <View style={styles.container}>
       <TextInput
         style={styles.input}
-        onChangeText={(text) => setDeckName(text)}
-        value={deckName}
+        onChangeText={(text) => setTitle(text)}
+        value={title}
         placeholder="Deck Name"
       />
 
       <TextButton
         onPress={submitDeck}
         style={styles.button}
-        disabled={deckName === ""}
+        disabled={title === ""}
       >
         Submit
       </TextButton>

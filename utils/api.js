@@ -41,11 +41,12 @@ export function fetchDeckResults() {
   return AsyncStorage.getItem(DECK_STORAGE_KEY).then(formatDeckResults);
 }
 
-export const submitEntry = ({ entry, key }) => {
+// saveDeckTitle: take in a single title argument and add it to the decks.
+export const saveDeckTitle = ({ title }) => {
   return AsyncStorage.mergeItem(
     DECK_STORAGE_KEY,
     JSON.stringify({
-      [key]: entry,
+      [title]: { title, questions: [] },
     })
   );
 };
@@ -61,5 +62,4 @@ export const removeEntry = (key) => {
 
 // getDecks: return all of the decks along with their titles, questions, and answers.
 // getDeck: take in a single id argument and return the deck associated with that id.
-// saveDeckTitle: take in a single title argument and add it to the decks.
 // addCardToDeck: take in two arguments, title and card, and will add the card to the list of questions for the deck with the associated title.
