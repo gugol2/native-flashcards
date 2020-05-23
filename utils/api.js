@@ -40,16 +40,16 @@ const dummyDecks = {
 //   },
 // };
 
-const saveDecksToStorage = (data) => {
-  return AsyncStorage.setItem(DECK_STORAGE_KEY, JSON.stringify(data)).then(
-    () => data
+const saveDecksToStorage = (decks) => {
+  return AsyncStorage.setItem(DECK_STORAGE_KEY, JSON.stringify(decks)).then(
+    () => decks
   );
 };
 
 // getDecks: return all of the decks along with their titles, questions, and answers.
 const getDecks = () => {
-  return AsyncStorage.getItem(DECK_STORAGE_KEY).then((results) => {
-    const decks = JSON.parse(results);
+  return AsyncStorage.getItem(DECK_STORAGE_KEY).then((decksStringified) => {
+    const decks = JSON.parse(decksStringified);
 
     return decks;
   });
@@ -57,10 +57,10 @@ const getDecks = () => {
 
 // getDeck: take in a single id argument and return the deck associated with that id.
 const getDeck = (title) => {
-  return AsyncStorage.getItem(DECK_STORAGE_KEY).then((results) => {
-    const data = JSON.parse(results);
+  return AsyncStorage.getItem(DECK_STORAGE_KEY).then((decksStringified) => {
+    const decks = JSON.parse(decksStringified);
 
-    const { [title]: deck } = data;
+    const { [title]: deck } = decks;
     return deck;
   });
 };
@@ -93,15 +93,28 @@ export const removeDeckFromStorage = (title) => {
 
 // addCardToDeck: take in two arguments, title and card, and will add the card to the list of questions for the deck with the associated title.
 export const addCardToDeckInStorage = async (title, card) => {
-  const decks = await getDecks();
+  // Or we can do the merge here and just call setItem
+  // const decks = await getDecks();
 
-  const updatedDecks = {
-    ...decks,
-    [title]: {
-      ...decks[title],
-      questions: [...decks[title].questions, card],
-    },
+  // const updatedDecks = {
+  //   ...decks,
+  //   [title]: {
+  //     ...decks[title],
+  //     questions: [...decks[title].questions, card],
+  //   },
+  // };
+
+  // return AsyncStorage.setItem(DECK_STORAGE_KEY, JSON.stringify(updatedDecks));
+
+  const deck = await getDeck(title);
+
+  const updatedDeck = {
+    ...deck,
+    questions: [...deck.questions, card],
   };
 
-  return AsyncStorage.mergeItem(DECK_STORAGE_KEY, JSON.stringify(updatedDecks));
+  return AsyncStorage.mergeItem(
+    DECK_STORAGE_KEY,
+    JSON.stringify({ [title]: updatedDeck })
+  );
 };
