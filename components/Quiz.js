@@ -5,20 +5,20 @@ import { connect } from "react-redux";
 
 const Quiz = (props) => {
   console.log("Quiz props:", props);
+
   const {
     navigation,
     card,
     title,
     totalCardNumber,
-    cardPosition,
     score,
+    cardPosition,
   } = props;
-
-  const quizIsFinished = cardPosition === totalCardNumber;
 
   const { question, answer } = card;
 
   const [showAnswer, setShowAnswer] = useState(false);
+  const [quizIsFinished, setQuizIsFinished] = useState(false);
 
   useLayoutEffect(() => {
     setShowAnswer(false);
@@ -31,6 +31,8 @@ const Quiz = (props) => {
         cardIndex: cardPosition,
         score: guess ? score + 1 : score,
       });
+    } else {
+      setQuizIsFinished(true);
     }
   };
 
@@ -49,6 +51,10 @@ const Quiz = (props) => {
   if (quizIsFinished) {
     return (
       <View style={styles.container}>
+        <View>
+          <Text>Total Score: {score}</Text>
+        </View>
+
         <TextButton onPress={navigateBackToDeck} style={{ padding: 10 }}>
           Back to Deck
         </TextButton>
@@ -85,27 +91,13 @@ const Quiz = (props) => {
         </View>
       )}
 
-      <TextButton
-        onPress={() => goToNextCard(true)}
-        style={{ padding: 10 }}
-        disabled={quizIsFinished}
-      >
+      <TextButton onPress={() => goToNextCard(true)} style={{ padding: 10 }}>
         Correct
       </TextButton>
 
-      <TextButton
-        onPress={() => goToNextCard(false)}
-        style={{ padding: 10 }}
-        disabled={quizIsFinished}
-      >
+      <TextButton onPress={() => goToNextCard(false)} style={{ padding: 10 }}>
         Incorrect
       </TextButton>
-
-      {quizIsFinished && (
-        <View>
-          <Text>Total Score: {score}</Text>
-        </View>
-      )}
     </View>
   );
 };
