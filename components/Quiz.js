@@ -49,6 +49,8 @@ const Quiz = ({
   };
 
   const restartQuiz = () => {
+    setQuizIsFinished(false);
+
     navigation.navigate("Quiz", {
       title,
       cardIndex: 0,
