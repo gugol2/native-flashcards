@@ -51,13 +51,13 @@ const Deck = (props) => {
     <View>
       <Text>{title}</Text>
       <Text>{`${questions.length} cards`}</Text>
-      <TextButton onPress={goToAddCard} style={{ padding: 10 }}>
+      <TextButton onPress={goToAddCard} style={{ padding: 24 }}>
         Add Card
       </TextButton>
-      <TextButton onPress={startQuiz} style={{ padding: 10 }}>
+      <TextButton onPress={startQuiz} style={{ padding: 24 }}>
         Start Quiz
       </TextButton>
-      <TextButton onPress={deleteDeck} style={{ padding: 10 }}>
+      <TextButton onPress={deleteDeck} style={{ padding: 24 }}>
         Delete Deck
       </TextButton>
     </View>

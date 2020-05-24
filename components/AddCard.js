@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, TextInput } from "react-native";
+import { View, TextInput, StyleSheet } from "react-native";
 import { TextButton } from "./TextButton";
 import { addCardToDeck } from "../actions";
 import { connect } from "react-redux";
@@ -30,22 +30,24 @@ const AddCard = (props) => {
   };
 
   return (
-    <View>
-      <TextInput
-        style={{ height: 40, borderColor: "gray", borderWidth: 1 }}
-        onChangeText={(text) => setQuestion(text)}
-        value={question}
-        placeholder="Question"
-      />
-      <TextInput
-        style={{ height: 40, borderColor: "gray", borderWidth: 1 }}
-        onChangeText={(text) => setAnswer(text)}
-        value={answer}
-        placeholder="Answer"
-      />
+    <View style={styles.container}>
+      <View style={styles.card}>
+        <TextInput
+          style={styles.textInput}
+          onChangeText={(text) => setQuestion(text)}
+          value={question}
+          placeholder="Question"
+        />
+        <TextInput
+          style={styles.textInput}
+          onChangeText={(text) => setAnswer(text)}
+          value={answer}
+          placeholder="Answer"
+        />
+      </View>
       <TextButton
         onPress={submitCard}
-        style={{ padding: 10 }}
+        style={{ padding: 24 }}
         disabled={question === "" || answer === ""}
       >
         Submit
@@ -63,3 +65,20 @@ const mapStateToProps = (state, { route }) => {
 };
 
 export const ConnectedAddCard = connect(mapStateToProps)(AddCard);
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  card: {
+    margin: 8,
+  },
+  textInput: {
+    height: 48,
+    borderColor: "gray",
+    borderWidth: 1,
+    padding: 4,
+    marginBottom: 8,
+    borderRadius: 5,
+  },
+});

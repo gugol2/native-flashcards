@@ -67,11 +67,11 @@ const Quiz = (props) => {
           <Text>Total Score: {finalScore}</Text>
         </View>
 
-        <TextButton onPress={navigateBackToDeck} style={{ padding: 10 }}>
+        <TextButton onPress={navigateBackToDeck} style={{ padding: 16 }}>
           Back to Deck
         </TextButton>
 
-        <TextButton onPress={restartQuiz} style={{ padding: 10 }}>
+        <TextButton onPress={restartQuiz} style={{ padding: 16 }}>
           Restart Quiz
         </TextButton>
       </View>
@@ -90,24 +90,31 @@ const Quiz = (props) => {
       {showAnswer ? (
         <View>
           <Text>{answer}</Text>
-          <TextButton onPress={() => setShowAnswer(false)}>
+
+          <TextButton
+            onPress={() => setShowAnswer(false)}
+            style={{ backgroundColor: "lightgreen", padding: 4 }}
+          >
             See Question
           </TextButton>
         </View>
       ) : (
         <View>
           <Text>{question}</Text>
-          <TextButton onPress={() => setShowAnswer(true)}>
+          <TextButton
+            onPress={() => setShowAnswer(true)}
+            style={{ backgroundColor: "lightpink", padding: 4 }}
+          >
             See Answer
           </TextButton>
         </View>
       )}
 
-      <TextButton onPress={() => goToNextCard(true)} style={{ padding: 10 }}>
+      <TextButton onPress={() => goToNextCard(true)} style={{ padding: 24 }}>
         Correct
       </TextButton>
 
-      <TextButton onPress={() => goToNextCard(false)} style={{ padding: 10 }}>
+      <TextButton onPress={() => goToNextCard(false)} style={{ padding: 24 }}>
         Incorrect
       </TextButton>
     </View>

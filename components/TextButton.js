@@ -1,16 +1,16 @@
 import React from "react";
 import { Text, StyleSheet } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import { purple, red, blue } from "../utils/colors";
+import { purple, red, blue, lightPurp } from "../utils/colors";
 
 export const TextButton = ({ children, onPress, style = {}, disabled }) => {
   return (
     <TouchableOpacity onPress={onPress} disabled={disabled}>
       <Text
         style={[
-          styles.reset,
-          style,
+          styles.button,
           disabled ? styles.disabled : styles.enabled,
+          style,
         ]}
       >
         {children}
@@ -20,18 +20,21 @@ export const TextButton = ({ children, onPress, style = {}, disabled }) => {
 };
 
 const styles = StyleSheet.create({
-  reset: {
+  button: {
     textAlign: "center",
     color: purple,
-    margin: 10,
+    margin: 8,
     borderColor: "gray",
     borderWidth: 1,
+    borderRadius: 5,
   },
 
   disabled: {
-    backgroundColor: red,
+    opacity: 0.4,
+    backgroundColor: "indianred",
   },
   enabled: {
-    backgroundColor: blue,
+    backgroundColor: "aliceblue",
+    opacity: 1,
   },
 });

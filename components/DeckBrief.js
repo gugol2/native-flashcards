@@ -12,7 +12,7 @@ export const DeckBrief = (props) => {
 
   return (
     <TouchableOpacity style={styles.deckBrief} onPress={goToDeck}>
-      <Text>{title}</Text>
+      <Text style={styles.deckBriefTitleText}>{title}</Text>
       <Text>{value.questions.length}</Text>
     </TouchableOpacity>
   );
@@ -24,6 +24,13 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     borderColor: "gray",
-    borderWidth: 2,
+    borderWidth: 1,
+    borderRadius: 5,
+    margin: 8,
+    backgroundColor: "lightyellow",
+  },
+  deckBriefTitleText: {
+    fontWeight: "bold",
+    fontSize: 20,
   },
 });
