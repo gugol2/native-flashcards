@@ -1,5 +1,5 @@
-import React from "react";
-import { View, Text } from "react-native";
+import React, { useRef, useEffect } from "react";
+import { Text, Animated } from "react-native";
 import { TextButton } from "./TextButton";
 import { connect } from "react-redux";
 import { removeDeck } from "../actions";
@@ -8,10 +8,17 @@ import { removeDeckFromStorage } from "../utils/api";
 const Deck = (props) => {
   console.log("Deck props", props);
 
-  const { dispatch } = props;
-
-  const { deck, navigation } = props;
+  const { deck, navigation, dispatch } = props;
   const { title, questions } = deck;
+
+  const fadeAnim = useRef(new Animated.Value(0)).current;
+
+  useEffect(() => {
+    Animated.timing(fadeAnim, {
+      toValue: 1,
+      duration: 2500,
+    }).start();
+  }, []);
 
   const goToAddCard = () => {
     navigation.navigate("AddCard", { title });
@@ -48,7 +55,12 @@ const Deck = (props) => {
   }
 
   return (
-    <View>
+    <Animated.View // Special animatable View
+      style={{
+        ...props.style,
+        opacity: fadeAnim,
+      }}
+    >
       <Text>{title}</Text>
       <Text>{`${questions.length} cards`}</Text>
       <TextButton onPress={goToAddCard} style={{ padding: 24 }}>
@@ -60,7 +72,7 @@ const Deck = (props) => {
       <TextButton onPress={deleteDeck} style={{ padding: 24 }}>
         Delete Deck
       </TextButton>
-    </View>
+    </Animated.View>
   );
 };
 
