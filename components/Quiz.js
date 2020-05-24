@@ -7,18 +7,14 @@ import {
   setLocalNotification,
 } from "../utils/notificationHelper";
 
-const Quiz = (props) => {
-  console.log("Quiz props:", props);
-
-  const {
-    navigation,
-    card,
-    title,
-    totalCardNumber,
-    score,
-    cardPosition,
-  } = props;
-
+const Quiz = ({
+  navigation,
+  card,
+  title,
+  totalCardNumber,
+  score,
+  cardPosition,
+}) => {
   const { question, answer } = card;
 
   const [showAnswer, setShowAnswer] = useState(false);

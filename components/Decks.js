@@ -7,15 +7,11 @@ import { receiveDecks } from "../actions";
 import { DeckBrief } from "./DeckBrief";
 import { Message } from "./Message";
 
-const Decks = (props) => {
-  console.log("props for Decks", props);
-  const { dispatch, decks, navigation } = props;
-
+const Decks = ({ dispatch, decks, navigation }) => {
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
     fetchDeckResults().then((decksFromStorage) => {
-      console.log("decksFromStorage", decksFromStorage);
       dispatch(receiveDecks(decksFromStorage));
       setReady(true);
     });

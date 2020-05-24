@@ -5,10 +5,7 @@ import { connect } from "react-redux";
 import { removeDeck } from "../actions";
 import { removeDeckFromStorage } from "../utils/api";
 
-const Deck = (props) => {
-  console.log("Deck props", props);
-
-  const { deck, navigation, dispatch } = props;
+const Deck = ({ deck, navigation, dispatch }) => {
   const { title, questions } = deck;
 
   const fadeAnim = useRef(new Animated.Value(0)).current;

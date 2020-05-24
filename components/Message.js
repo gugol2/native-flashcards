@@ -1,9 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 
-export const Message = (props) => {
-  const { route, messageProp } = props;
-
+export const Message = ({ route, messageProp }) => {
   const messageToShow = (route && route.params.message) || messageProp;
 
   return (

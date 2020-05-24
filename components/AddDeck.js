@@ -5,10 +5,7 @@ import { connect } from "react-redux";
 import { addDeck } from "../actions";
 import { saveDeckToStorage } from "../utils/api";
 
-const AddDeck = (props) => {
-  console.log("AddDeck props", props);
-  const { dispatch, navigation } = props;
-
+const AddDeck = ({ dispatch, navigation }) => {
   const [title, setTitle] = useState("");
 
   const submitDeck = () => {

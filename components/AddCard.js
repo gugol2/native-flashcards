@@ -5,11 +5,7 @@ import { addCardToDeck } from "../actions";
 import { connect } from "react-redux";
 import { addCardToDeckInStorage } from "../utils/api";
 
-const AddCard = (props) => {
-  console.log("AddCard props", props);
-
-  const { dispatch, title, navigation } = props;
-
+const AddCard = ({ dispatch, title, navigation }) => {
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
 

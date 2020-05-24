@@ -1,11 +1,7 @@
 import React from "react";
 import { Text, StyleSheet, TouchableOpacity } from "react-native";
 
-export const DeckBrief = (props) => {
-  console.log("props for DeckBrief", props);
-
-  const { title, value, navigation } = props;
-
+export const DeckBrief = ({ title, value, navigation }) => {
   const goToDeck = () => {
     navigation.navigate("Deck", { title });
   };

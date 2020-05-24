@@ -1,7 +1,7 @@
 import React from "react";
 import { Text, StyleSheet } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import { purple, red, blue, lightPurp } from "../utils/colors";
+import { purple } from "../utils/colors";
 
 export const TextButton = ({ children, onPress, style = {}, disabled }) => {
   return (
