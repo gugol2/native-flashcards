@@ -53,6 +53,6 @@ function getHeaderTitle(route) {
     case "Decks":
       return "Deck list";
     case "AddDeck":
-      return "Add a deck to your decks";
+      return "Add a deck to your deck list";
   }
 }
