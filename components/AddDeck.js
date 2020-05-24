@@ -3,7 +3,7 @@ import { View, TextInput, StyleSheet } from "react-native";
 import { TextButton } from "./TextButton";
 import { connect } from "react-redux";
 import { addDeck } from "../actions";
-import { saveDeckToStorage } from "../utils/api";
+import { saveDeckToStorage } from "../utils/persistenceAPI";
 
 const AddDeck = ({ dispatch, navigation }) => {
   const [title, setTitle] = useState("");

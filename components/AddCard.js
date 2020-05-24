@@ -3,7 +3,7 @@ import { View, TextInput, StyleSheet } from "react-native";
 import { TextButton } from "./TextButton";
 import { addCardToDeck } from "../actions";
 import { connect } from "react-redux";
-import { addCardToDeckInStorage } from "../utils/api";
+import { addCardToDeckInStorage } from "../utils/persistenceAPI";
 
 const AddCard = ({ dispatch, title, navigation }) => {
   const [question, setQuestion] = useState("");

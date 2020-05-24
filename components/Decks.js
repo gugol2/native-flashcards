@@ -1,6 +1,6 @@
 import { View, StyleSheet } from "react-native";
 import React, { useEffect, useState } from "react";
-import { fetchDeckResults } from "../utils/api";
+import { fetchDeckResults } from "../utils/persistenceAPI";
 import { AppLoading } from "expo";
 import { connect } from "react-redux";
 import { receiveDecks } from "../actions";

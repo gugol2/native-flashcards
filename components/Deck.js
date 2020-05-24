@@ -3,7 +3,7 @@ import { Text, Animated, StyleSheet, View } from "react-native";
 import { TextButton } from "./TextButton";
 import { connect } from "react-redux";
 import { removeDeck } from "../actions";
-import { removeDeckFromStorage } from "../utils/api";
+import { removeDeckFromStorage } from "../utils/persistenceAPI";
 
 const Deck = ({ deck, navigation, dispatch }) => {
   const { title, questions } = deck;
