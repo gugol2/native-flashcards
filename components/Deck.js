@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from "react";
-import { Text, Animated } from "react-native";
+import { Text, Animated, StyleSheet, View } from "react-native";
 import { TextButton } from "./TextButton";
 import { connect } from "react-redux";
 import { removeDeck } from "../actions";
@@ -56,22 +56,29 @@ const Deck = (props) => {
 
   return (
     <Animated.View // Special animatable View
-      style={{
-        ...props.style,
-        opacity: fadeAnim,
-      }}
+      style={[
+        styles.container,
+        {
+          opacity: fadeAnim,
+        },
+      ]}
     >
-      <Text>{title}</Text>
-      <Text>{`${questions.length} cards`}</Text>
-      <TextButton onPress={goToAddCard} style={{ padding: 24 }}>
-        Add Card
-      </TextButton>
-      <TextButton onPress={startQuiz} style={{ padding: 24 }}>
-        Start Quiz
-      </TextButton>
-      <TextButton onPress={deleteDeck} style={{ padding: 24 }}>
-        Delete Deck
-      </TextButton>
+      <View style={styles.deckInfo}>
+        <Text style={styles.deckInfoText}>{title}</Text>
+        <Text>{`${questions.length} cards`}</Text>
+      </View>
+
+      <View>
+        <TextButton onPress={goToAddCard} style={{ padding: 24 }}>
+          Add Card
+        </TextButton>
+        <TextButton onPress={startQuiz} style={{ padding: 24 }}>
+          Start Quiz
+        </TextButton>
+        <TextButton onPress={deleteDeck} style={{ padding: 24 }}>
+          Delete Deck
+        </TextButton>
+      </View>
     </Animated.View>
   );
 };
@@ -85,3 +92,18 @@ const mapStateToProps = (state, { route }) => {
 };
 
 export const ConnectedDeck = connect(mapStateToProps)(Deck);
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "space-around",
+    margin: 8,
+  },
+  deckInfo: {
+    alignItems: "center",
+  },
+  deckInfoText: {
+    fontWeight: "bold",
+    fontSize: 20,
+  },
+});

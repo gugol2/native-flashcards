@@ -46,13 +46,14 @@ export const ConnectedAddDeck = connect()(AddDeck);
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    justifyContent: "space-between",
+    margin: 8,
   },
   textInput: {
     height: 48,
     borderColor: "gray",
     borderWidth: 1,
     padding: 4,
-    margin: 8,
     borderRadius: 5,
   },
 });

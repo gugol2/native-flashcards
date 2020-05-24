@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
   button: {
     textAlign: "center",
     color: purple,
-    margin: 8,
+    marginBottom: 8,
     borderColor: "gray",
     borderWidth: 1,
     borderRadius: 5,

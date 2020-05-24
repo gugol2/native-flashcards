@@ -31,7 +31,7 @@ const AddCard = (props) => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.card}>
+      <View>
         <TextInput
           style={styles.textInput}
           onChangeText={(text) => setQuestion(text)}
@@ -69,8 +69,7 @@ export const ConnectedAddCard = connect(mapStateToProps)(AddCard);
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-  },
-  card: {
+    justifyContent: "space-between",
     margin: 8,
   },
   textInput: {

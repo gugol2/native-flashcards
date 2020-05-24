@@ -62,9 +62,11 @@ const Quiz = (props) => {
 
   if (quizIsFinished) {
     return (
-      <View style={styles.container}>
+      <View style={styles.containerSolved}>
         <View>
-          <Text>Total Score: {finalScore}</Text>
+          <Text style={[styles.questionAnswerText, { alignSelf: "center" }]}>
+            Total Score: {finalScore}
+          </Text>
         </View>
 
         <TextButton onPress={navigateBackToDeck} style={{ padding: 16 }}>
@@ -84,12 +86,9 @@ const Quiz = (props) => {
         {cardPosition}/{totalCardNumber}
       </Text>
 
-      {/* delete this */}
-      <Text>{score}</Text>
-
       {showAnswer ? (
         <View>
-          <Text>{answer}</Text>
+          <Text style={styles.questionAnswerText}>{answer}</Text>
 
           <TextButton
             onPress={() => setShowAnswer(false)}
@@ -100,7 +99,7 @@ const Quiz = (props) => {
         </View>
       ) : (
         <View>
-          <Text>{question}</Text>
+          <Text style={styles.questionAnswerText}>{question}</Text>
           <TextButton
             onPress={() => setShowAnswer(true)}
             style={{ backgroundColor: "lightpink", padding: 4 }}
@@ -110,13 +109,15 @@ const Quiz = (props) => {
         </View>
       )}
 
-      <TextButton onPress={() => goToNextCard(true)} style={{ padding: 24 }}>
-        Correct
-      </TextButton>
+      <View>
+        <TextButton onPress={() => goToNextCard(true)} style={{ padding: 24 }}>
+          Correct
+        </TextButton>
 
-      <TextButton onPress={() => goToNextCard(false)} style={{ padding: 24 }}>
-        Incorrect
-      </TextButton>
+        <TextButton onPress={() => goToNextCard(false)} style={{ padding: 24 }}>
+          Incorrect
+        </TextButton>
+      </View>
     </View>
   );
 };
@@ -141,5 +142,17 @@ export const ConnectedQuiz = connect(mapStateToProps)(Quiz);
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    justifyContent: "space-between",
+    margin: 8,
+  },
+  containerSolved: {
+    flex: 1,
+    justifyContent: "space-around",
+    margin: 8,
+  },
+  questionAnswerText: {
+    fontWeight: "bold",
+    fontSize: 20,
+    marginBottom: 8,
   },
 });
