@@ -5,6 +5,7 @@ import { AppLoading } from "expo";
 import { connect } from "react-redux";
 import { receiveDecks } from "../actions";
 import { DeckBrief } from "./DeckBrief";
+import { Message } from "./Message";
 
 const Decks = (props) => {
   console.log("props for Decks", props);
@@ -28,14 +29,18 @@ const Decks = (props) => {
     <View style={styles.container}>
       {/* <Text>{JSON.stringify(decks)}</Text> */}
 
-      {Object.entries(decks).map(([title, value]) => (
-        <DeckBrief
-          key={title}
-          title={title}
-          value={value}
-          navigation={navigation}
-        />
-      ))}
+      {Object.entries(decks).length ? (
+        Object.entries(decks).map(([title, value]) => (
+          <DeckBrief
+            key={title}
+            title={title}
+            value={value}
+            navigation={navigation}
+          />
+        ))
+      ) : (
+        <Message messageProp="There are no decks. Please create a deck to start." />
+      )}
     </View>
   );
 };

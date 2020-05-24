@@ -2,15 +2,13 @@ import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 
 export const Message = (props) => {
-  const { route } = props;
+  const { route, messageProp } = props;
 
-  const {
-    message = "Default Message to test the styles like position, margins, colors and so on",
-  } = route.params;
+  const messageToShow = (route && route.params.message) || messageProp;
 
   return (
     <View style={styles.container}>
-      <Text style={styles.message}>{message}</Text>
+      <Text style={styles.message}>{messageToShow}</Text>
     </View>
   );
 };
