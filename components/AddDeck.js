@@ -8,11 +8,13 @@ import { saveDeckToStorage } from "../utils/persistenceAPI";
 const AddDeck = ({ dispatch, navigation }) => {
   const [title, setTitle] = useState("");
 
-  const submitDeck = () => {
+  const submitDeck = async () => {
     dispatch(addDeck(title));
 
     // Save Deck to "DB"
-    saveDeckToStorage(title);
+    await saveDeckToStorage(title);
+
+    await setTitle("");
 
     // routes to the created deck
     navigation.navigate("Deck", { title });
