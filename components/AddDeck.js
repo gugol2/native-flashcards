@@ -24,7 +24,7 @@ const AddDeck = (props) => {
   return (
     <View style={styles.container}>
       <TextInput
-        style={styles.input}
+        style={styles.textInput}
         onChangeText={(text) => setTitle(text)}
         value={title}
         placeholder="Deck Name"
@@ -32,7 +32,7 @@ const AddDeck = (props) => {
 
       <TextButton
         onPress={submitDeck}
-        style={styles.button}
+        style={{ padding: 24 }}
         disabled={title === ""}
       >
         Submit
@@ -46,15 +46,13 @@ export const ConnectedAddDeck = connect()(AddDeck);
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
   },
-  input: {
-    height: 40,
+  textInput: {
+    height: 48,
     borderColor: "gray",
     borderWidth: 1,
     padding: 4,
-  },
-  button: {
-    margin: 30,
+    margin: 8,
+    borderRadius: 5,
   },
 });
