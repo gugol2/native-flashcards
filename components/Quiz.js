@@ -2,6 +2,10 @@ import React, { useState, useLayoutEffect } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { TextButton } from "./TextButton";
 import { connect } from "react-redux";
+import {
+  clearLocalNotification,
+  setLocalNotification,
+} from "../utils/notificationHelper";
 
 const Quiz = (props) => {
   console.log("Quiz props:", props);
@@ -38,6 +42,9 @@ const Quiz = (props) => {
     } else {
       setQuizIsFinished(true);
       setFinalScore(updatedScore);
+
+      // clear local notification
+      clearLocalNotification().then(setLocalNotification);
     }
   };
 

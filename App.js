@@ -15,11 +15,16 @@ import { ConnectedDeck } from "./components/Deck";
 import { ConnectedAddCard } from "./components/AddCard";
 import { ConnectedQuiz } from "./components/Quiz";
 import { Message } from "./components/Message";
+import { setLocalNotification } from "./utils/notificationHelper";
 
 const Stack = createStackNavigator();
 
 export default function App(props) {
   const isLoadingComplete = useCachedResources();
+
+  React.useEffect(() => {
+    setLocalNotification();
+  }, []);
 
   const store = createStore(
     decks,
