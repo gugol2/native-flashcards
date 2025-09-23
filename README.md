@@ -7,7 +7,8 @@ Mobile app built with React Native and Redux for Android and iOS, that allows us
 1. `git clone https://github.com/gugol2/native-flashcards.git`
 2. `cd native-flashcards`
 3. `yarn install`
-4. `expo start`
+4. `yarn start`
+5. Press 'w' to open the web view
 
 With these commands you will run the expo packager and will be able to launch the app
 on a device emulator or on a real device.
